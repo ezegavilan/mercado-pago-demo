@@ -19,6 +19,7 @@ public class Pedido implements Serializable {
     @Column(name = "created_at")
     private Date createdAt;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "pedido_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<DetallePedido> items;
 

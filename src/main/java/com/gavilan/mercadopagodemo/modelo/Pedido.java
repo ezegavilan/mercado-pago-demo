@@ -1,7 +1,10 @@
 package com.gavilan.mercadopagodemo.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,7 +15,11 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
+    private Date createdAt;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<DetallePedido> items;
 
     public Pedido() {
@@ -29,6 +36,14 @@ public class Pedido implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public List<DetallePedido> getItems() {
@@ -53,6 +68,7 @@ public class Pedido implements Serializable {
     public String toString() {
         return "Pedido{" +
                 "id=" + id +
+                ", createdAt=" + createdAt +
                 ", items=" + items +
                 '}';
     }

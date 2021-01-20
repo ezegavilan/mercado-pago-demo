@@ -1,5 +1,7 @@
 package com.gavilan.mercadopagodemo.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -12,7 +14,8 @@ public class DetallePedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "producto_id", unique = true)
+    @JoinColumn(name = "producto_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Producto producto;
     private Integer cantidad;
 

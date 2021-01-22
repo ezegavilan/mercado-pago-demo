@@ -33,7 +33,7 @@ public class MercadoPagoServiceImpl implements MercadoPagoService {
         Item item1 = new Item();
         item1.setId("1234")
                 .setTitle("Producto 1")
-                .setQuantity(2)
+                .setQuantity(1)
                 .setCurrencyId("ARS")
                 .setUnitPrice((float) 75.56);
 
